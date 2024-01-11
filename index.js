@@ -2,11 +2,17 @@ import fs from 'fs';
 import path from 'path';
 import { Client, Collection, Events, GatewayIntentBits } from 'discord.js';
 import { fileURLToPath } from 'url';
+import http from 'http';
 import dotenv from 'dotenv';
 dotenv.config()
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+http.createServer(function (req, res) {
+    res.write("I'm alive! Yay!");
+    res.end(); //end the response
+}).listen(8080 || process.env.PORT);
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
